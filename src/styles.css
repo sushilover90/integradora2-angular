@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+.margin-top{
+    margin-top:10vh;
+}
+
+.margin-top-7{
+    margin-top:7vh;
+}
+
+.margin-top-5{
+    margin-top:5vh;
+}
+
+.margin-top-2{
+    margin-top:2vh;
+}

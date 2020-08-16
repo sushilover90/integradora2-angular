@@ -1,0 +1,67 @@
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-lg-4 col-12 margin-top">
+            <h1 class="margin-top-7">
+                Project...
+            </h1>
+            <p>Amet asperiores at dolor dolorum facilis illo nulla qui quia ratione temporibus. Aliquid consequuntur
+                cum enim iure modi nisi officia perferendis possimus, quaerat ullam! Ab dolorum earum itaque ratione
+                voluptatem?
+            </p>
+            <p>Ad architecto commodi dolorum ex magni possimus quidem quod veniam. Aliquam aspernatur eaque explicabo
+                facilis illum ipsam modi nam nihil non possimus quisquam, similique tempore temporibus veritatis vero
+                vitae voluptatem?
+            </p>
+            <p>Alias at commodi consequatur cum doloribus ea eaque et facere fuga, fugiat ipsam laboriosam libero
+                minus modi natus, neque omnis placeat praesentium provident quasi, quod recusandae rerum saepe sunt
+                voluptate?
+            </p>
+        </div> <!--col-lg-4 col-12-->
+
+        <div class="col-lg-8 col-12 margin-top">
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="btn-group" role="group" aria-label="Authentication">
+                        <button (click)="switch_component(0)" type="button" class="btn btn-primary">Iniciar sesión</button>
+                        <button (click)="switch_component(1)" type="button" class="btn btn-info">Registrarse</button>
+                    </div>
+                </div>
+
+            </div> <!--first row-->
+
+            <div class="row">
+
+                <div class="col-12">
+                    <div [ngSwitch]="component_id" class="mt-4">
+                        <app-login *ngSwitchCase="0"></app-login>
+                        <app-register (alert_data)="set_alert_data($event)" (show_login_component)="switch_component($event)" *ngSwitchCase="1"></app-register>
+
+                        <app-login *ngSwitchDefault></app-login>
+                    </div>
+                </div>
+
+            </div> <!--second row-->
+
+            <div class="row">
+
+                <div *ngIf="show_alert" class="col-12 mt-4">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong><p>{{auth_alert_data.title}}</p></strong>
+                        <p class="mt-1">{{auth_alert_data.auth_data.title_message}}</p>
+                        <p class="mt-1">{{auth_alert_data.auth_data.message}}</p>
+                        <button (click)="hide_alert()" type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div> <!--third row-->
+
+        </div> <!--col-lg-7 col-12-->
+
+    </div> <!--first row-->
+
+</div> <!--first container fluid-->

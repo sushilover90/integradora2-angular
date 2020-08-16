@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-6 margin-top">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    Dispensador
+                </div> <!--card header-->
+                <div class="card-body">
+                    Estatus: Aqui va la variable (Apagado|Encendido)
+                </div> <!--card body-->
+                <div class="card-footer">
+                    <div class="row">
+
+                        <div class="col-3">
+                            <input (click)="start_servo()" type="button" value="Activar dispensador" class="btn btn-block bg-primary text-white">
+                        </div> <!--col 3-->
+
+                    </div> <!--first row-->
+                </div> <!--card footer-->
+            </div> <!--card -->
+        </div> <!--first col inside first row-->
+
+        <div class="col-6 margin-top">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    Cantidad de croquetas
+                </div> <!--card header-->
+                <div class="card-body">
+                    Cantidad: Aqui va la variable (Agotadas|Pocas|Suficientes|Máximo)
+                </div>
+            </div> <!--card-->
+        </div> <!--second col inside first row-->
+
+    </div> <!--first row inside first container fluid-->
+
+</div> <!--first container fluid-->

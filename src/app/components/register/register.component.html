@@ -1,0 +1,71 @@
+<div class="card">
+    <div class="card-header bg-info text-white">Registre sus datos</div>
+    <div class="card-body">
+        <div class="row">
+
+            <div class="col-12">
+                <label for="email">Correo electrónico</label>
+            </div>
+            <div class="col-11">
+                <input [(ngModel)]="email" class="form-control" type="email" name="email" id="email">
+            </div>
+            <div class="col-1">
+                <button (click)="clear_email_input()" class="btn btn-block bg-info text-white"><i class="fa fa-trash"></i></button>
+            </div>
+
+        </div> <!--first row-->
+        <div class="row mt-3">
+
+            <div class="col-12">
+                <label for="confirm_email">Confirme correo electrónico</label>
+            </div>
+            <div class="col-11">
+                <input [(ngModel)]="confirm_email" class="form-control" type="email" name="confirm_email" id="confirm_email">
+            </div>
+            <div class="col-1">
+                <button (click)="clear_confirm_email_input()" class="btn btn-block bg-info text-white"><i class="fa fa-trash"></i></button>
+            </div>
+
+        </div> <!--second row-->
+
+        <div class="row mt-3">
+
+            <div class="col-12">
+                <label for="password">Password</label>
+            </div>
+            <div class="col-11">
+                <input [(ngModel)]="password" class="form-control" type="password" name="password" id="password">
+            </div>
+            <div class="col-1">
+                <button (click)="clear_password_input()" class="btn btn-block bg-info text-white"><i class="fa fa-trash"></i></button>
+            </div>
+
+        </div> <!--third row-->
+
+        <div class="row mt-3">
+
+            <div class="col-12">
+                <label for="confirm_password">Confirme password</label>
+            </div>
+            <div class="col-11">
+                <input [(ngModel)]="confirm_password" class="form-control" type="password" name="confirm_password" id="confirm_password">
+            </div>
+            <div class="col-1">
+                <button (click)="clear_confirm_password_input()" class="btn btn-block bg-info text-white"><i class="fa fa-trash"></i></button>
+            </div>
+
+        </div> <!--fourth row-->
+
+    </div> <!--card body-->
+
+    <div class="card-footer">
+        <div class="row">
+
+            <div class="col-lg-4">
+                <input (click)="register()" type="button" value="Registrarse" class="btn btn-block bg-info text-white">
+            </div>
+
+        </div> <!--first row-->
+    </div> <!--card footer-->
+
+</div>
