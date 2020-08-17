@@ -13,14 +13,14 @@ export class GetUrlService {
     if(!isDevMode()){
       return environment.apiUrl;
     }
-    return 'http://localhost:3333';
+    return 'http://192.168.100.7:3333';
   }
 
   public static get_ws_url():string{
     if(!isDevMode()){
       return environment.wsUrl;
     }
-    return 'ws://localhost:3333'
+    return 'ws://192.168.100.7:3333'
   }
 
 }

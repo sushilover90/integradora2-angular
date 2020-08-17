@@ -13,7 +13,7 @@
                     <div class="row">
 
                         <div class="col-3">
-                            <input (click)="start_servo()" type="button" value="Activar dispensador" class="btn btn-block bg-primary text-white">
+                            <input [disabled]="!btn_active_servo_state" (click)="start_servo()" type="button" value="Activar dispensador" class="btn btn-block bg-primary text-white">
                         </div> <!--col 3-->
 
                     </div> <!--first row-->
@@ -27,7 +27,7 @@
                     Cantidad de croquetas
                 </div> <!--card header-->
                 <div class="card-body">
-                    Cantidad: Aqui va la variable (Agotadas|Pocas|Suficientes|Máximo)
+                    Cantidad: {{distance}}
                 </div>
             </div> <!--card-->
         </div> <!--second col inside first row-->

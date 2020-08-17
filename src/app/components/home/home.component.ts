@@ -9,8 +9,10 @@ import {GetUrlService} from "../../services/get-url.service";
 })
 export class HomeComponent implements OnInit {
 
-  ws:any;
-  servo_channel:any;
+  private ws:any;
+  private servo_channel:any;
+  public btn_active_servo_state = true
+  public distance:number = 0
 
   constructor() {
 
@@ -22,11 +24,14 @@ export class HomeComponent implements OnInit {
       path:'adonis-ws'
     });
 
+    console.log('has on measure');
+
     this.ws.connect();
     this.servo_channel = this.ws.subscribe('servo');
 
     this.servo_channel.on('message',message =>{
-      console.log(message);
+      console.log(message)
+      this.check_servo_status(message);
     });
 
     this.servo_channel.on('reserve', reserve => {
@@ -35,22 +40,31 @@ export class HomeComponent implements OnInit {
 
     this.servo_channel.on('dispense',data=>{
       console.log(data);
-    })
+    });
 
-  }
+    this.servo_channel.on('measure',data =>{
+      this.distance = data.distance;
+      console.log(data);
+    });
 
-  // for testing
-  send_message():void{
-    this.servo_channel.emit('message','hola');
-  }
-
-  // for testing
-  send_reserve():void{
-    this.servo_channel.emit('reserve','reserved');
   }
 
   start_servo():void{
     this.servo_channel.emit('dispense','started servo');
+    this.btn_active_servo_state = false;
+  }
+
+  check_servo_status(message:any){
+    if(!message.servo_active){
+      this.btn_active_servo_state = true;
+      return;
+    }
+
+    if(message.servo_active === true){
+      this.btn_active_servo_state = false;
+      return;
+    }
+
   }
 
 }
