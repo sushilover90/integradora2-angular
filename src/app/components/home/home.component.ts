@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     console.log('has on measure');
 
     this.ws.connect();
-    this.servo_channel = this.ws.subscribe('servo');
+    this.servo_channel = this.ws.subscribe('iot');
 
     this.servo_channel.on('message',message =>{
       console.log(message)
