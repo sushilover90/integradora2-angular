@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   public activations_lists:Array<Activation> = [];
   public real_time_feed:boolean = false;
 
-  constructor(private httpClientService: HttpClientService,private router: Router) {
+  constructor(public httpClientService: HttpClientService,public router: Router) {
 
     const url:string = `${GetUrlService.get_api_url()}/token/verify`;
 
@@ -135,6 +135,9 @@ export class HomeComponent implements OnInit {
       return;
     }
     this.activations_lists = activations[0].activations;
-}
+  }
+
+  
+
 
 }

@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
+import { Router } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
 
 
 // @ts-ignore
+@Injectable()
 export class HttpClientService {
 
-  constructor(private http_client : HttpClient) { }
+  constructor(private http_client : HttpClient, private router:Router) { }
 
   // set a http request and return its observable
     makeRequest(method:string, url:string,
@@ -30,5 +32,14 @@ export class HttpClientService {
       return this.http_client.request(method,url);
 
     } // makeRequest method end
+
+    public logout(): void{
+        
+      window.localStorage.removeItem('token')
+      this.router.navigateByUrl('/')
+      
+  }
+
+    
 
 }
