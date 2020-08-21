@@ -3,6 +3,7 @@ import {environment} from "../../../environments/environment";
 import {AuthAlertData} from "../../interfaces/auth-alert-data";
 import {HttpClientService} from "../../services/http-client.service";
 import {GetUrlService} from "../../services/get-url.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   public email = "e@e.com";
   public password = "123123123";
 
-  constructor(private httpClientService: HttpClientService) { }
+  constructor(private httpClientService: HttpClientService,private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
 
   send_login_request():void{
 
-    const user_register_url:string = `${GetUrlService.get_api_url()}/user/login`;
+    const user_login_url:string = `${GetUrlService.get_api_url()}/user/login`;
 
     const options = {
       body: {
@@ -54,11 +55,12 @@ export class LoginComponent implements OnInit {
       }
     };
 
-    this.httpClientService.makeRequest('post',user_register_url,options)
+    this.httpClientService.makeRequest('post',user_login_url,options)
         .subscribe(
             response => {
-              localStorage.setItem('token',response.auth_data.token);
-              console.log(response);
+              localStorage.setItem('token',response.auth.token);
+              localStorage.setItem('username',this.email);
+              this.router.navigate(['home']);
             },
             error => {
               console.log(error);

@@ -11,6 +11,10 @@ import {HttpClientService} from "./services/http-client.service";
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {AuthHttpInterceptor} from "./classes/auth-http-interceptor";
 import { HomeComponent } from './components/home/home.component';
+import {AuthGuard} from "./guards/auth.guard";
+import {VerifyTokenGuard} from "./guards/verify-token.guard";
+import { ActivationsListComponent } from './components/activations-list/activations-list.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,9 @@ import { HomeComponent } from './components/home/home.component';
     RegisterComponent,
     LoginComponent,
     UserAuthenticationComponent,
-    HomeComponent
+    HomeComponent,
+    ActivationsListComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,9 @@ import { HomeComponent } from './components/home/home.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,
       multi: true
-    }
+    },
+    AuthGuard,
+    VerifyTokenGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {GetUrlService} from "../services/get-url.service";
 
 @Injectable()
 // @ts-ignore
@@ -26,7 +27,7 @@ export class AuthHttpInterceptor implements HttpInterceptor{
 
         // if the request is going to another url.
         // do not set the token.
-        if(!request.url.match(/http:\/\/localhost:3333\//)){
+        if(!request.url.match(GetUrlService.get_api_url())){
             return request;
         }
 
