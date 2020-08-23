@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div *ngIf="authenticated" class="container-fluid">
     <nav class="navbar navbar-expand-lg"  style="background-color: white;">
       
         <div class="collapse navbar-collapse" >
@@ -13,13 +13,13 @@
       </nav>
     <div class="row">
 
-        <div class="col-4 margin-top">
+        <div class="col-6 margin-top">
             <div class="card">
                 <div class="card-header bg-info text-white">
                     Dispensador
                 </div> <!--card header-->
                 <div class="card-body">
-                    Estatus: Aqui va la variable (Apagado|Encendido)
+                    Estatus: {{servo_status}}
                 </div> <!--card body-->
                 <div class="card-footer">
                     <div class="row">
@@ -33,21 +33,10 @@
             </div> <!--card -->
         </div> <!--first col inside first row-->
 
-        <div class="col-3 margin-top">
+        <div class="col-6 margin-top">
             <div class="card">
                 <div class="card-header bg-info text-white">
                     Cantidad de croquetas
-                </div> <!--card header-->
-                <div class="card-body">
-                    Cantidad: {{distance}}
-                </div>
-            </div> <!--card-->
-        </div> <!--second col inside first row-->
-
-        <div class="col-5 margin-top">
-            <div class="card">
-                <div class="card-header bg-info text-white">
-                    Registro de RFID
                 </div> <!--card header-->
                 <div class="card-body">
                     Cantidad: {{distance}}

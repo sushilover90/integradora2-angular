@@ -13,7 +13,6 @@ import {AuthHttpInterceptor} from "./classes/auth-http-interceptor";
 import { HomeComponent } from './components/home/home.component';
 import {AuthGuard} from "./guards/auth.guard";
 import {VerifyTokenGuard} from "./guards/verify-token.guard";
-import { ActivationsListComponent } from './components/activations-list/activations-list.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     LoginComponent,
     UserAuthenticationComponent,
     HomeComponent,
-    ActivationsListComponent,
     NotFoundComponent
   ],
   imports: [

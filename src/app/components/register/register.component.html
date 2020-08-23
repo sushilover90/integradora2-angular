@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mb-3">
     <div class="card-header bg-info text-white">Registre sus datos</div>
     <div class="card-body">
         <div class="row">
@@ -8,12 +8,27 @@
             </div>
             <div class="col-11">
                 <input [(ngModel)]="email" class="form-control" type="email" name="email" id="email">
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <small>Introduzca una dirección de correo válida</small>
+                    </div>
+                    <div class="col-sm-12">
+                        <small>Este campo no debe dejarse vacío.</small>
+                    </div>
+
+                </div>
+
             </div>
             <div class="col-1">
                 <button (click)="clear_email_input()" class="btn btn-block bg-info text-white"><i class="fa fa-trash"></i></button>
             </div>
 
         </div> <!--first row-->
+
+        <hr>
+
         <div class="row mt-3">
 
             <div class="col-12">
@@ -21,12 +36,15 @@
             </div>
             <div class="col-11">
                 <input [(ngModel)]="confirm_email" class="form-control" type="email" name="confirm_email" id="confirm_email">
+                <small>Este campo no debe dejarse vacío.</small>
             </div>
             <div class="col-1">
                 <button (click)="clear_confirm_email_input()" class="btn btn-block bg-info text-white"><i class="fa fa-trash"></i></button>
             </div>
 
         </div> <!--second row-->
+
+        <hr>
 
         <div class="row mt-3">
 
@@ -35,12 +53,25 @@
             </div>
             <div class="col-11">
                 <input [(ngModel)]="password" class="form-control" type="password" name="password" id="password">
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <small>Introduzca un mínimo de 8 caracteres en su contraseña.</small>
+                    </div>
+                    <div class="col-sm-12">
+                        <small>Este campo no debe dejarse vacío.</small>
+                    </div>
+
+                </div>
+
             </div>
             <div class="col-1">
                 <button (click)="clear_password_input()" class="btn btn-block bg-info text-white"><i class="fa fa-trash"></i></button>
             </div>
 
         </div> <!--third row-->
+
+        <hr>
 
         <div class="row mt-3">
 
@@ -49,6 +80,7 @@
             </div>
             <div class="col-11">
                 <input [(ngModel)]="confirm_password" class="form-control" type="password" name="confirm_password" id="confirm_password">
+                <small>Introduzca una dirección de correo válida.</small>
             </div>
             <div class="col-1">
                 <button (click)="clear_confirm_password_input()" class="btn btn-block bg-info text-white"><i class="fa fa-trash"></i></button>

@@ -8,12 +8,16 @@
             </div>
             <div class="col-11">
                 <input [(ngModel)]="email" class="form-control" type="email" name="email" id="email">
+                <small>Este campo no debe dejarse vacío.</small>
             </div>
             <div class="col-1">
                 <button (click)="clear_email_input()" class="btn btn-block bg-primary text-white"><i class="fa fa-trash"></i></button>
             </div>
 
         </div> <!--first row-->
+
+        <hr>
+
         <div class="row mt-3">
 
             <div class="col-12">
@@ -21,13 +25,16 @@
             </div>
             <div class="col-11">
                 <input [(ngModel)]="password" class="form-control" type="password" name="password" id="password">
+                <small>Este campo no debe dejarse vacío.</small>
             </div>
             <div class="col-1">
                 <button (click)="clear_password_input()" class="btn btn-block bg-primary text-white"><i class="fa fa-trash"></i></button>
             </div>
 
         </div> <!--second row-->
-    </div>
+
+    </div> <!--card-body-->
+
     <div class="card-footer">
         <div class="row">
 

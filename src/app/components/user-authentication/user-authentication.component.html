@@ -6,17 +6,18 @@
             <h1 class="margin-top-7">
                 Project...
             </h1>
-            <p>Amet asperiores at dolor dolorum facilis illo nulla qui quia ratione temporibus. Aliquid consequuntur
-                cum enim iure modi nisi officia perferendis possimus, quaerat ullam! Ab dolorum earum itaque ratione
-                voluptatem?
+            <p>
+                Con esta aplicación es capaz de monitorear la cantidad de comida que hay actualmente en el dispensador.
             </p>
-            <p>Ad architecto commodi dolorum ex magni possimus quidem quod veniam. Aliquam aspernatur eaque explicabo
-                facilis illum ipsam modi nam nihil non possimus quisquam, similique tempore temporibus veritatis vero
-                vitae voluptatem?
+            <p>
+                Solo debe registrarse y hacer uso de la misma.
             </p>
-            <p>Alias at commodi consequatur cum doloribus ea eaque et facere fuga, fugiat ipsam laboriosam libero
-                minus modi natus, neque omnis placeat praesentium provident quasi, quod recusandae rerum saepe sunt
-                voluptate?
+            <p>
+                La aplicación le brinda información en tiempo real.
+                También puede hacer uso de la aplicación movil en su dispositivo Android.
+            </p>
+            <p>
+                Nota: el registro de las activaciones histórico solo es visible en la aplicación web.
             </p>
         </div> <!--col-lg-4 col-12-->
 
@@ -25,8 +26,8 @@
 
                 <div class="col-12">
                     <div class="btn-group" role="group" aria-label="Authentication">
-                        <button (click)="switch_component(0)" type="button" class="btn btn-primary">Iniciar sesión</button>
-                        <button (click)="switch_component(1)" type="button" class="btn btn-info">Registrarse</button>
+                        <button tabindex="1" (click)="switch_component(0)" type="button" class="btn btn-primary">Iniciar sesión</button>
+                        <button tabindex="2" (click)="switch_component(1)" type="button" class="btn btn-info">Registrarse</button>
                     </div>
                 </div>
 
@@ -36,8 +37,8 @@
 
                 <div class="col-12">
                     <div [ngSwitch]="component_id" class="mt-4">
-                        <app-login *ngSwitchCase="0"></app-login>
-                        <app-register (alert_data)="set_alert_data($event)" (show_login_component)="switch_component($event)" *ngSwitchCase="1"></app-register>
+                        <app-login (clear_alert_data)="hide_alert()" (alert_data)="set_alert_data($event)" *ngSwitchCase="0"></app-login>
+                        <app-register (clear_alert_data)="hide_alert()" (alert_data)="set_alert_data($event)" (show_login_component)="switch_component($event)" *ngSwitchCase="1"></app-register>
 
                         <app-login *ngSwitchDefault></app-login>
                     </div>

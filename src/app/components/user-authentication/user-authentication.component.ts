@@ -32,6 +32,7 @@ export class UserAuthenticationComponent implements OnInit {
 
   switch_component(component_id:number): void{
     this.component_id = component_id;
+    this.hide_alert();
   }
 
   hide_alert():void{

@@ -4,6 +4,7 @@ import {GetUrlService} from "../../services/get-url.service";
 import {HttpClientService} from "../../services/http-client.service";
 import {Router} from "@angular/router";
 import {Activation} from "../../interfaces/activation";
+import {markAsyncChunksNonInitial} from "@angular-devkit/build-angular/src/angular-cli-files/utilities/async-chunks";
 
 @Component({
   selector: 'app-home',
@@ -16,9 +17,11 @@ export class HomeComponent implements OnInit {
   private iot_channel:any;
   public btn_active_servo_state = true;
   public btn_active_lectures_state = true;
-  public distance:number = 0;
+  public distance:string = 'Pendiente...';
   public activations_lists:Array<Activation> = [];
   public real_time_feed:boolean = false;
+  public servo_status:string  = 'Apagado';
+  public authenticated:boolean = false;
 
   constructor(public httpClientService: HttpClientService,public router: Router) {
 
@@ -26,6 +29,7 @@ export class HomeComponent implements OnInit {
 
     this.httpClientService.makeRequest('get', url).subscribe(
         response => {
+          this.authenticated = true;
           this.start_socket_connection();
           this.get_activation_registers();
         },
@@ -49,20 +53,6 @@ export class HomeComponent implements OnInit {
       description: 'started servo'
     }
     this.iot_channel.emit('dispense',event_data);
-    //this.btn_active_servo_state = false;
-  }
-
-  check_servo_status(message:any){
-    if(!message.servo_active){
-      this.btn_active_servo_state = true;
-      return;
-    }
-
-    if(message.servo_active === true){
-      this.btn_active_servo_state = false;
-      return;
-    }
-
   }
 
   private start_socket_connection():void{
@@ -77,7 +67,7 @@ export class HomeComponent implements OnInit {
 
     this.iot_channel.on('message',message =>{
       console.log(message)
-      /*this.check_servo_status(message);*/
+      this.check_servo_status(message);
     });
 
     this.iot_channel.on('reserve', reserve => {
@@ -89,8 +79,12 @@ export class HomeComponent implements OnInit {
     });
 
     this.iot_channel.on('measure',data =>{
-      this.distance = data.distance;
       console.log(data);
+      const distance:number = parseFloat(data.distance);
+      if(distance>=13){
+        this.distance  = 'Vacio';
+      }
+      this.distance  = 'Lleno';
     });
 
     this.iot_channel.on('close',()=>{
@@ -101,8 +95,8 @@ export class HomeComponent implements OnInit {
       console.log('ready');
     });
 
-    this.iot_channel.on('send_activations',activations =>{
-        this.check_real_time_feed(activations);
+    this.iot_channel.on('send_activations',activation =>{
+        this.check_real_time_feed(activation);
     })
 
   }
@@ -130,11 +124,26 @@ export class HomeComponent implements OnInit {
         )
   }
 
-  check_real_time_feed(activations):void{
+  check_servo_status(message:any){
+    if(message.servo_active === true){
+      console.log('llego aquí message.servo_active === true')
+      this.servo_status = 'Encendido';
+      this.btn_active_servo_state = false;
+      return;
+    }
+
+    console.log('llego aquí !message.servo_active')
+    this.servo_status = 'Apagado';
+    this.btn_active_servo_state = true;
+
+  }
+
+  check_real_time_feed(activation):void{
+    console.log(activation)
     if(!this.real_time_feed){
       return;
     }
-    this.activations_lists = activations[0].activations;
+    this.activations_lists.unshift(activation);
   }
 
   

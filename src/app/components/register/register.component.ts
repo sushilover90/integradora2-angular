@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
 
   @Output() public show_login_component = new EventEmitter();
   @Output() public alert_data = new EventEmitter();
+  @Output() public clear_alert_data = new EventEmitter();
 
   constructor(private httpClientService: HttpClientService) { }
 
@@ -38,6 +39,8 @@ export class RegisterComponent implements OnInit {
     }
 
     this.send_register_request();
+
+    this.clear_alert_data.emit();
 
   }
 
